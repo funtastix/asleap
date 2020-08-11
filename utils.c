@@ -167,20 +167,22 @@ void Collapse(unsigned char *in, unsigned char *out)
 	}
 }
 
+static DES_key_schedule	key_schedule;
+
+bool DesSetkey(u_char *key)
+{
+	DES_cblock des_key;
+	MakeKey(key, des_key);
+	DES_set_key(&des_key, &key_schedule);
+	return (1);
+}
+
 void DesEncrypt(unsigned char *clear, unsigned char *key, unsigned char *cipher)
 {
-	unsigned char des_key[8];
-	unsigned char crypt_key[66];
-	unsigned char des_input[66];
+	DesSetKey(key);
 
-	MakeKey(key, des_key);
-
-	Expand(des_key, crypt_key);
-	setkey((char *)crypt_key);
-
-	Expand(clear, des_input);
-	encrypt((char *)des_input, 0);
-	Collapse(des_input, cipher);
+	DES_ecb_encrypt((DES_cblock *)clear, (DES_cblock *)cipher,
+	    &key_schedule, 1);
 }
 
 int IsBlank(char *s)
