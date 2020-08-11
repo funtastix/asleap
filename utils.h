@@ -22,6 +22,8 @@
  * lamont_dump from nmap's utils.cc.  Thanks Fyodor.
  */
 
+#include <des.h>
+
 /* Prototypes */
 void lamont_hdump(unsigned char *bp, unsigned int length);
 unsigned char Get7Bits(unsigned char *input, int startBit);
