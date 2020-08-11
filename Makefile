@@ -10,6 +10,7 @@
 LDLIBS		= -lpcap -lcrypt
 CFLAGS		= -pipe -Wall -D_LINUX -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -I../../..
 CFLAGS		+= -D_OPENSSL_MD4
+CFLAGS          += -I/usr/include/openssl
 LDLIBS		+= -lcrypto
 CFLAGS		+= -g3 -ggdb -g
 PROGOBJ		= asleap.o genkeys.o utils.o common.o sha1.o
