@@ -169,12 +169,11 @@ void Collapse(unsigned char *in, unsigned char *out)
 
 static DES_key_schedule	key_schedule;
 
-bool DesSetkey(u_char *key)
+void DesSetkey(u_char *key)
 {
 	DES_cblock des_key;
 	MakeKey(key, des_key);
 	DES_set_key(&des_key, &key_schedule);
-	return (1);
 }
 
 void DesEncrypt(unsigned char *clear, unsigned char *key, unsigned char *cipher)
