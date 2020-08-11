@@ -179,7 +179,7 @@ bool DesSetkey(u_char *key)
 
 void DesEncrypt(unsigned char *clear, unsigned char *key, unsigned char *cipher)
 {
-	DesSetKey(key);
+	DesSetkey(key);
 
 	DES_ecb_encrypt((DES_cblock *)clear, (DES_cblock *)cipher,
 	    &key_schedule, 1);
